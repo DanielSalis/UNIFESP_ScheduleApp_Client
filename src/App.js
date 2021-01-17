@@ -1,10 +1,18 @@
-import './App.css';
+import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
+
+import Login from './Pages/Login';
+import Schedule from './Pages/Schedule';
+
 
 function App() {
   return (
     <div className="App">
-      <p>Teste da aplicação</p>
-      <p>teste 02</p>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/schedule" component={Schedule} />
+          </Switch>
+        </Router>
     </div>
   );
 }
