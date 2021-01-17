@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-
+import { PageContainer, Body } from "./style";
 class Schedule extends Component{
     
     render(){
         return(
-            <h1>Schedule</h1>
+            <PageContainer>
+                <Body></Body>
+            </PageContainer>
         )
     }
 }
