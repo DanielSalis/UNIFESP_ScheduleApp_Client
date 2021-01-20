@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
 
 export const Body= styled.div`
     width:100%;
-    height:70%;
+    height:92%;
     display:flex;
     flex-direction:column;
     background-color: red;
