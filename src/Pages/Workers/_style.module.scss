@@ -1,0 +1,73 @@
+@import "../../Layout/global.scss";
+
+.contentContainer {
+  width: 40%;
+  height: 100vh;
+  padding: 0 20%;
+  background-color: $light-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+
+  .nameContainer {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    justify-content: center;
+  }
+
+.placeContainer {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    div {
+      width: 45% !important;
+    }
+
+  }
+  .timeContainer {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: large;
+    .timeInputContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      div {
+        display: flex;
+        flex-direction: row;
+        width: 45%;
+        label { width: 20%;}
+        input {
+          margin-left: 10px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .dataContainer {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .calendarContainer {
+      width: 100px;
+      height: 100px;
+      background-color: $blue;
+      border-radius: 10px;
+    }
+  }
+}
