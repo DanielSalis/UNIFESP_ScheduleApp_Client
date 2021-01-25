@@ -1,0 +1,16 @@
+@import "../../Layout/global.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  label {
+    margin: 10px 0;
+    font-size: large;
+  }
+  input {
+    height: 40px;
+    outline: none;
+    border: 1px solid $gray;
+    border-radius: 5px;
+  }
+}
