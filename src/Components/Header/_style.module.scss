@@ -1,0 +1,45 @@
+@import "../../Layout/global.scss";
+
+.headerWrapper {
+    background-color: $dark-blue;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    align-items: center;
+    padding: 0 10%;
+
+    .schedulerOption, .dashboardOption, .workerOption {
+        padding: 30px;
+        cursor: pointer;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        &:hover {
+            background: $darker-blue;
+            color: white;
+        }
+    }
+    .space {
+        width: -webkit-fill-available;
+    }
+}
+.profileContainer {
+    display: flex;
+    flex-direction: row;
+
+    .profileInfo {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-content: center;
+        p {
+            width: max-content;
+        }
+    }
+    
+    .profilePic {
+        width: auto;
+        height: 60px;
+        border-radius: 50%;
+        margin-left: 20px;
+    }
+}

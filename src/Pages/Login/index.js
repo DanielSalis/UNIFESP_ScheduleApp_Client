@@ -1,36 +1,37 @@
-import React, {Component} from 'react';
-import {FiCalendar} from 'react-icons/fi';
+import React, { useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
+import { FiCalendar } from 'react-icons/fi'
 
-import './style.scss';
+import styles from './_style.module.scss'
 
-class Login extends Component{
-    
-    render(){
-        return(
-            <div className="login-container">
-                <div className="square-container">
-                    <div className="title-container">
-                        <FiCalendar size={30} color="#0f499d"/>
-                        <h2>Scheduler</h2>
-                    </div>
-                    <div className="form-container">
-                        <div>
-                            <span>Email</span>
-                            <input type="text"></input>
-                        </div>
-                        <div>
-                            <span>Senha</span>
-                            <input type="text"></input>
-                        </div>
-                    </div>
-                    <div className="buttons-container">
-                        <button>Esqueci minha senha</button>
-                        <button>Entrar</button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+const Login = () => {
+  const history = useHistory()
+  const handleOnClick = useCallback(() => history.push('/scheduler'), [history])
+
+  return (
+    <div className={styles.loginContainer}>
+      <div className={styles.squareContainer}>
+        <div className={styles.titleContainer}>
+          <FiCalendar size={30} color="#0f499d" />
+          <h2>Scheduler</h2>
+        </div>
+        <div className={styles.formContainer}>
+          <div>
+            <span>Email</span>
+            <input type="text"></input>
+          </div>
+          <div>
+            <span>Senha</span>
+            <input type="text"></input>
+          </div>
+        </div>
+        <div className={styles.buttonsContainer}>
+          <button>Esqueci minha senha</button>
+          <button onClick={handleOnClick}>Entrar</button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Login;
+export default Login

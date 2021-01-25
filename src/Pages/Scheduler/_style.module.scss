@@ -1,0 +1,54 @@
+.situationContainer {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  h3 {
+    padding: 5px 0;
+  }
+}
+
+.unitContainer {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  h3 {
+    padding: 5px 0;
+  }
+}
+
+.departmentContainer {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  h3 {
+    padding: 5px 0;
+  }
+}
+
+.onDutyTypeContainer {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  h3 {
+    padding: 5px 0;
+  }
+}
+
+.leftContainer {
+  width: 200px;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.headerSchedulerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.schedulerContainer {
+  width: 100%;
+  padding: 10px 0 0 20px;
+}
