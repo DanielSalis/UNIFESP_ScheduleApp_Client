@@ -1,0 +1,14 @@
+@import "../../Layout/global.scss";
+
+.button {
+  background-color: $darker-blue;
+  border-radius: 10px;
+  height: 50px;
+  width: 170px;
+  font-size: large;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
