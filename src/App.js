@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import { UserStorage } from './UserContext'
 import Login from './Pages/Login'
 import './Layout/global.scss'
+import {PrivateRoute} from './Components/PrivateRoute'
 import Scheduler from './Pages/Scheduler'
 import Dashboard from './Pages/Dashboard'
 import Workers from './Pages/Workers'
@@ -13,9 +14,9 @@ function App() {
         {/* <UserStorage> */}
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route path="/scheduler" component={Scheduler} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/workers" component={Workers} />
+          <PrivateRoute path="/scheduler" component={Scheduler} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/workers" component={Workers} />
         </Switch>
         {/* </UserStorage> */}
       </Router>
