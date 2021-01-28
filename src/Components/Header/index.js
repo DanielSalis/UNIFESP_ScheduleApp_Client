@@ -11,9 +11,9 @@ const Header = () => {
   }
   return (
     <div className={styles.headerWrapper}>
-      <div className={styles.schedulerOption}>Scheduler</div>
-      <div className={styles.dashboardOption}>Dashboard</div>
-      <div className={styles.workerOption}>Funcionários</div>
+      <div className={styles.schedulerOption} onClick={()=>history.push('/scheduler')}>Scheduler</div>
+      <div className={styles.dashboardOption} onClick={()=>history.push('/dashboard')}>Dashboard</div>
+      <div className={styles.workerOption} onClick={()=>history.push('/workers')}>Funcionários</div>
       <div className={styles.space} />
       <div className={styles.profileContainer}>
         <div className={styles.profileInfo}>
