@@ -6,6 +6,7 @@ import {PrivateRoute} from './Components/PrivateRoute'
 import Scheduler from './Pages/Scheduler'
 import Dashboard from './Pages/Dashboard'
 import Workers from './Pages/Workers'
+import AddWorkers from './Pages/AddWorkers'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <PrivateRoute path="/scheduler" component={Scheduler} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/addWorkers" component={AddWorkers} />
           <PrivateRoute path="/workers" component={Workers} />
         </Switch>
         {/* </UserStorage> */}
