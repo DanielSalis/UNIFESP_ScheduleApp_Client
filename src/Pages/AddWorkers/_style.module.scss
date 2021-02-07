@@ -36,7 +36,7 @@
     padding: 20px 0;
     border-bottom: 1px solid black;
     justify-content: center;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     font-size: large;
@@ -64,7 +64,7 @@
     width: 100%;
     padding: 20px 0;
     border-bottom: 1px solid black;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
     .calendarContainer {
