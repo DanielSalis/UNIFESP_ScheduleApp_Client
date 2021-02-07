@@ -4,6 +4,7 @@ import { FiCalendar } from 'react-icons/fi'
 import api from '../../Components/Api'
 
 import styles from './_style.module.scss'
+import loadingAnimation from '../../Assets/Rolling-1s-200px.svg'
 
 const Login = () => {
   // useCallback(() => history.push('/scheduler'), [history])
@@ -11,8 +12,10 @@ const Login = () => {
   
   const [email, updateEmail] = useState('')
   const [password, updatePassword] = useState('')
+  const [loading, setLoading] = useState(true)
   
   const handleOnClick = async (e) => {
+    setLoading(true)
     e.preventDefault();
 
     const payload = {
@@ -27,17 +30,18 @@ const Login = () => {
         localStorage.setItem('authToken', res.data.token);
         return res.data.token
       })
-      .then(async (token) => {
+      .then(async () => {
         const object = await api.get('/api/auth/getAuth', {
           headers: {
               'x-auth-token': localStorage.getItem('authToken')
           }
         })
         localStorage.setItem('UserLogged', JSON.stringify(object.data))
+        setLoading(false)
         history.push('/scheduler');
       })
       .catch(async e => {
-        debugger
+        setLoading(false)
         console.log(e)
       })
   }
@@ -52,6 +56,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
+      {loading && <div className={styles.loginLoading}><img src={loadingAnimation}></img></div>}
       <div className={styles.squareContainer}>
         <div className={styles.titleContainer}>
           <FiCalendar size={30} color="#0f499d" />
