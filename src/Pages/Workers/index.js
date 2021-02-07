@@ -10,17 +10,40 @@ const Workers = () => {
   const history = useHistory();
 
   const [users, setUsers] = useState(null);
+  const [profiles, setProfiles] = useState(null);
 
   const getAllWorkers = async () => {
     const response = await api.get("/api/user/getAll");
-    const usersData = response.data;
+    const currentUser = JSON.parse(localStorage.getItem('UserLogged'))
+    const usersData = response.data.filter(item => {
+      return item.id != currentUser.id
+    });
     setUsers(usersData);
+    getProfiles()
+  };
+
+  const getProfiles = async () => {
+    const response = await api.get("/api/profile/getAll", {
+      headers: {
+        "x-auth-token": localStorage.getItem("authToken")
+      }
+    });
+
+    await setProfiles(response.data)
   };
 
   const generateUsersGrid = () => {
     const elements = users.map((item) => {
+
+      let currentProfile = profiles.filter(profile=>{
+        return profile.id === item.profile_id
+      })
+
       return (
         <div className={style.row} key={item.id} id={`user-${item.id}`}>
+          <div className={style.rowProfile}>
+            <h3>{currentProfile[0].type}</h3>
+          </div>
           <div className={style.rowName}>
             <h3>{item.name}</h3>
           </div>

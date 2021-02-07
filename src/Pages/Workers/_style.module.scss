@@ -25,6 +25,7 @@
             background-color: $dark-blue !important;
         }
     }
+    font-size: 15px;
     border: 1px solid white;
     display: flex;
     flex-direction: row;
@@ -32,17 +33,21 @@
     justify-content: space-between;
     cursor: pointer;
 
+    .rowProfile{
+        width: 20%;
+    }
+
     .rowName{
-        width: 33%;
+        width: 20%;
         padding-left: 40px;
     }
 
     .rowEmail{
-        width: 33%;
+        width: 20%;
     }
 
     .rowButtons{
-        width: 33%;
+        width: 20%;
         display: flex;
         flex-direction: row;
         align-items: center;
