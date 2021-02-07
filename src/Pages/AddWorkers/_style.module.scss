@@ -27,7 +27,7 @@
     flex-direction: row;
     justify-content: space-between;
     div {
-      width: 45% !important;
+      width: 75% !important;
     }
 
   }
@@ -36,7 +36,7 @@
     padding: 20px 0;
     border-bottom: 1px solid black;
     justify-content: center;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     font-size: large;
@@ -55,19 +55,40 @@
         }
       }
     }
+    .inputWrapper {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .dataContainer {
     width: 100%;
     padding: 20px 0;
     border-bottom: 1px solid black;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
     .calendarContainer {
-      width: 100px;
-      height: 100px;
-      background-color: $blue;
+      // background-color: $blue;
+      margin: 10px 0;
       border-radius: 10px;
     }
+  }
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.repetitionWrapper {
+  height: 40px;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.daysWrapper {
+  p {
+    margin-bottom: 10px;
   }
 }
