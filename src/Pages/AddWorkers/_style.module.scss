@@ -27,7 +27,7 @@
     flex-direction: row;
     justify-content: space-between;
     div {
-      width: 45% !important;
+      width: 75% !important;
     }
 
   }
@@ -55,6 +55,10 @@
         }
       }
     }
+    .inputWrapper {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .dataContainer {
     width: 100%;
@@ -64,10 +68,27 @@
     flex-direction: row;
     justify-content: space-between;
     .calendarContainer {
-      width: 100px;
-      height: 100px;
-      background-color: $blue;
+      // background-color: $blue;
+      margin: 10px 0;
       border-radius: 10px;
     }
+  }
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.repetitionWrapper {
+  height: 40px;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.daysWrapper {
+  p {
+    margin-bottom: 10px;
   }
 }

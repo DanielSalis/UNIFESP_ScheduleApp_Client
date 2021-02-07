@@ -35,13 +35,13 @@ const Header = () => {
           <p>John Doe</p>
           <p>Plantonista - Unimed Centro</p>
         </div>
-        <div class={styles.dropdown}>
+        <div className={styles.dropdown}>
           <img
             src="https://thispersondoesnotexist.com/image"
             alt="Profile"
             className={styles.profilePic}
           />
-          <div class={styles.dropdownContent}>
+          <div className={styles.dropdownContent}>
             <a href="/profile:id">Profile</a>
             <a href="/" onClick={logout}>
               Logout

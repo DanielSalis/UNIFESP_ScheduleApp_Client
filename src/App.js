@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { UserStorage } from './UserContext'
-import Login from './Pages/Login'
-import './Layout/global.scss'
-import {PrivateRoute} from './Components/PrivateRoute'
-import Scheduler from './Pages/Scheduler'
-import Dashboard from './Pages/Dashboard'
-import Workers from './Pages/Workers'
-import AddWorkers from './Pages/AddWorkers'
+import Login from "./Pages/Login";
+import "./Layout/global.scss";
+import { PrivateRoute } from "./Components/PrivateRoute";
+import Scheduler from "./Pages/Scheduler";
+import Dashboard from "./Pages/Dashboard";
+import Workers from "./Pages/Workers";
+import AddWorkers from "./Pages/AddWorkers";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         {/* </UserStorage> */}
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

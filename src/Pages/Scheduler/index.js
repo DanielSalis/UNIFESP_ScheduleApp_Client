@@ -13,6 +13,16 @@ const Scheduler = () => {
     onDuty: "Plantão"
   };
 
+  // const state = {
+  //   filterWorkerSituation: "COD"
+  // };
+
+  // const radioChangeHandler = (event) => {
+  //   this.setState({
+  //     filterWorkerSituation: event.target.value
+  //   });
+  // };
+
   const unitySelectObject = {
     option1: "Unimed Centro",
     option2: "Unimed Vale Sul"
@@ -38,8 +48,19 @@ const Scheduler = () => {
           <div className={styles.situationContainer}>
             <h3>Situação</h3>
             <RadioButton
-              object={situationRadioButtonObject}
-              forName="situationRadioButtonObject.option"
+              // changed={radioChangeHandler}
+              id="1"
+              // isSelected={state.filterWorkerSituation === "Trabalhando"}
+              label="Trabalhando"
+              value="Trabalhando"
+            />
+
+            <RadioButton
+              // changed={radioChangeHandler}
+              id="2"
+              // isSelected={state.filterWorkerSituation === "Plantão"}
+              label="Plantão"
+              value="Plantão"
             />
           </div>
           <div className={styles.unitContainer}>
@@ -59,7 +80,7 @@ const Scheduler = () => {
           <div className={styles.headerSchedulerContainer}>
             <h1>Jan 11 - Jan 17</h1>
             <div className={styles.buttonsContainer}>
-              <div class={styles.changeMonth}></div>
+              <div className={styles.changeMonth}></div>
               <Button>Exportar</Button>
             </div>
           </div>

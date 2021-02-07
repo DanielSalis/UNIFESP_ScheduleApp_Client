@@ -6,6 +6,8 @@ import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
 import Select from "../../Components/Select";
 import style from "./_style.module.scss";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 import api from "../../Components/Api";
 
@@ -147,33 +149,38 @@ const Workers = () => {
           ></Input>
         </div>
         <div className={style.placeContainer}>
-          {/* <Input label="Unidade" type="text" name="unityName" value={unity}></Input> */}
-          <p>Perfil</p>
-          <Select
-            name="profile"
-            id="profile"
-            onChange={(e) => setProfile(e.target.value)}
-            object={profileNames ? profileNames : {}}
-          />
-          <p>Unidade</p>
-          <Select
-            name="unities"
-            id="unities"
-            onChange={(e) => {
-              handleDepartmentChange(e.target.value);
-            }}
-            object={unitiesNames ? unitiesNames : {}}
-          />
-          <p>Departamento</p>
-          <Select
-            disabled={departmentsNames ? false : true}
-            name="department"
-            id="department"
-            onChange={(e) => {
-              setDepartment(e.target.value);
-            }}
-            object={departmentsNames ? departmentsNames : {}}
-          />
+          <div className={style.selectContainer}>
+            <p>Perfil</p>
+            <Select
+              name="profile"
+              id="profile"
+              onChange={(e) => setProfile(e.target.value)}
+              object={profileNames ? profileNames : {}}
+            />
+          </div>
+          <div className={style.selectContainer}>
+            <p>Unidade</p>
+            <Select
+              name="unities"
+              id="unities"
+              onChange={(e) => {
+                handleDepartmentChange(e.target.value);
+              }}
+              object={unitiesNames ? unitiesNames : {}}
+            />
+          </div>
+          <div className={style.selectContainer}>
+            <p>Departamento</p>
+            <Select
+              disabled={departmentsNames ? false : true}
+              name="department"
+              id="department"
+              onChange={(e) => {
+                setDepartment(e.target.value);
+              }}
+              object={departmentsNames ? departmentsNames : {}}
+            />
+          </div>
         </div>
         <div className={style.timeContainer}>
           <p>Horário</p>
@@ -185,7 +192,9 @@ const Workers = () => {
         <div className={style.dataContainer}>
           <div>
             <p>Data</p>
-            <div className={style.calendarContainer}></div>
+            <div className={style.calendarContainer}>
+              <Calendar />
+            </div>
           </div>
 
           <div className={style.repetitionWrapper}>
@@ -197,9 +206,11 @@ const Workers = () => {
             <Checkbox object={daysObject}></Checkbox>
           </div>
         </div>
-        <Button className={style.buttonAdd} onClick={(e) => handleSubmit(e)}>
-          Adicionar Funcionário
-        </Button>
+        <div style={{ marginTop: "20px" }}>
+          <Button onClick={(e) => handleSubmit(e)}>
+            Adicionar Funcionário
+          </Button>
+        </div>
       </div>
     </div>
   );
