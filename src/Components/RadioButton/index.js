@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './_style.module.scss'
+import React from "react";
+import styles from "./_style.module.scss";
 
 const RadioButton = ({ children, object, ...props }) => {
   return (
@@ -8,15 +8,18 @@ const RadioButton = ({ children, object, ...props }) => {
         <div className={styles.radioButtonWrapper}>
           <input
             type="radio"
-            {...props}
             className={styles.input}
+            id={props.id}
+            onChange={props.changed}
+            value={props.value}
+            checked={props.isSelected}
             key={key}
           ></input>
-          <label {...props.forName}>{value}</label>
+          <label htmlFor={props.id}>{value}</label>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default RadioButton
+export default RadioButton;

@@ -1,34 +1,34 @@
-import React from 'react'
-import styles from './_style.module.scss'
-import Header from '../../Components/Header'
-import RadioButton from '../../Components/RadioButton'
-import Select from '../../Components/Select'
-import Checkbox from '../../Components/Checkbox'
-import Button from '../../Components/Button'
-import SchedulerComponent from '../../Components/SchedulerComponent'
+import React from "react";
+import styles from "./_style.module.scss";
+import Header from "../../Components/Header";
+import RadioButton from "../../Components/RadioButton";
+import Select from "../../Components/Select";
+import Checkbox from "../../Components/Checkbox";
+import Button from "../../Components/Button";
+import SchedulerComponent from "../../Components/SchedulerComponent";
 
 const Scheduler = () => {
   const situationRadioButtonObject = {
-    working: 'Trabalhando',
-    onDuty: 'Plantão',
-  }
+    working: "Trabalhando",
+    onDuty: "Plantão"
+  };
 
   const unitySelectObject = {
-    option1: 'Unimed Centro',
-    option2: 'Unimed Vale Sul',
-  }
+    option1: "Unimed Centro",
+    option2: "Unimed Vale Sul"
+  };
 
   const departmentSelectObject = {
-    option1: 'Pediatria',
-    option2: 'Cardiologia',
-  }
+    option1: "Pediatria",
+    option2: "Cardiologia"
+  };
 
   const onDutyTypeObject = {
-    option1: '4 horas',
-    option2: '6 horas',
-    option3: '8 horas',
-    option4: '12 horas',
-  }
+    option1: "4 horas",
+    option2: "6 horas",
+    option3: "8 horas",
+    option4: "12 horas"
+  };
 
   return (
     <div>
@@ -37,7 +37,10 @@ const Scheduler = () => {
         <div className={styles.leftContainer}>
           <div className={styles.situationContainer}>
             <h3>Situação</h3>
-            <RadioButton object={situationRadioButtonObject} />
+            <RadioButton
+              object={situationRadioButtonObject}
+              forName="situationRadioButtonObject.option"
+            />
           </div>
           <div className={styles.unitContainer}>
             <h3>Unidade</h3>
@@ -64,7 +67,7 @@ const Scheduler = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Scheduler
+export default Scheduler;

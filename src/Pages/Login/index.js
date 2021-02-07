@@ -1,54 +1,53 @@
-import React, { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { FiCalendar } from 'react-icons/fi'
-import api from '../../Components/Api'
+import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { FiCalendar } from "react-icons/fi";
+import api from "../../Components/Api";
 
-import styles from './_style.module.scss'
+import styles from "./_style.module.scss";
 
 const Login = () => {
   // useCallback(() => history.push('/scheduler'), [history])
-  const history = useHistory()
-  
-  const [email, updateEmail] = useState('')
-  const [password, updatePassword] = useState('')
-  
+  const history = useHistory();
+
+  const [email, updateEmail] = useState("");
+  const [password, updatePassword] = useState("");
+
   const handleOnClick = async (e) => {
     e.preventDefault();
 
     const payload = {
-      name: '',
+      name: "",
       email: email,
       password: password
-    }
+    };
 
-    await api.post('/api/auth/login', payload)
-      .then(async res => {
-        debugger
-        localStorage.setItem('authToken', res.data.token);
-        return res.data.token
+    await api
+      .post("/api/auth/login", payload)
+      .then(async (res) => {
+        localStorage.setItem("authToken", res.data.token);
+        return res.data.token;
       })
       .then(async (token) => {
-        const object = await api.get('/api/auth/getAuth', {
+        const object = await api.get("/api/auth/getAuth", {
           headers: {
-              'x-auth-token': localStorage.getItem('authToken')
+            "x-auth-token": localStorage.getItem("authToken")
           }
-        })
-        localStorage.setItem('UserLogged', JSON.stringify(object.data))
-        history.push('/scheduler');
+        });
+        localStorage.setItem("UserLogged", JSON.stringify(object.data));
+        history.push("/scheduler");
       })
-      .catch(async e => {
-        debugger
-        console.log(e)
-      })
-  }
+      .catch(async (e) => {
+        console.log(e);
+      });
+  };
 
-  const handleEmailChange= async(e)=>{
-    await updateEmail(e.target.value)
-  }
+  const handleEmailChange = async (e) => {
+    updateEmail(e.target.value);
+  };
 
-  const handlePasswordChange= async (e)=>{
-    await updatePassword(e.target.value)
-  }
+  const handlePasswordChange = async (e) => {
+    updatePassword(e.target.value);
+  };
 
   return (
     <div className={styles.loginContainer}>
@@ -73,7 +72,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
