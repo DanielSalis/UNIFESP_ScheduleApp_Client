@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./_style.module.scss";
 
@@ -42,8 +42,10 @@ const Header = () => {
             className={styles.profilePic}
           />
           <div class={styles.dropdownContent}>
-            <a onClick={logout}>Logout</a>
             <a href="/profile:id">Profile</a>
+            <a href="/" onClick={logout}>
+              Logout
+            </a>
           </div>
         </div>
       </div>

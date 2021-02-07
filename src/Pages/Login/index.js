@@ -2,9 +2,9 @@ import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FiCalendar } from "react-icons/fi";
 import api from "../../Components/Api";
+import Loading from "../../Components/Loading";
 
 import styles from "./_style.module.scss";
-import loadingAnimation from "../../Assets/Rolling-1s-200px.svg";
 
 const Login = () => {
   // useCallback(() => history.push('/scheduler'), [history])
@@ -37,14 +37,12 @@ const Login = () => {
           }
         });
         localStorage.setItem("UserLogged", JSON.stringify(object.data));
+        setTimeout(2000);
         setLoading(false);
         history.push("/scheduler");
       })
       .catch(async (e) => {
         setLoading(false);
-        console.log(e);
-      })
-      .catch(async (e) => {
         console.log(e);
       });
   };
@@ -59,11 +57,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
-      {loading && (
-        <div className={styles.loginLoading}>
-          <img src={loadingAnimation}></img>
-        </div>
-      )}
+      {loading && <Loading />}
       <div className={styles.squareContainer}>
         <div className={styles.titleContainer}>
           <FiCalendar size={30} color="#0f499d" />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Headers from "../../Components/Header";
-
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import api from "../../Components/Api";
 import Button from "../../Components/Button";
 import style from "./_style.module.scss";
@@ -28,8 +28,16 @@ const Workers = () => {
             <h3>{item.email}</h3>
           </div>
           <div className={style.rowButtons}>
-            <button>Editar</button>
-            <button onClick={() => handleDeleteUser(item.id)}>Remover</button>
+            <div className={style.buttonClass}>
+              <FiEdit size={30} color="#000000" />
+            </div>
+            <div className={style.buttonClass}>
+              <FiTrash2
+                size={30}
+                onClick={() => handleDeleteUser(item.id)}
+                color="#000000"
+              />
+            </div>
           </div>
         </div>
       );
