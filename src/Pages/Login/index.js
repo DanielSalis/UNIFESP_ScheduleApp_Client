@@ -12,7 +12,7 @@ const Login = () => {
   
   const [email, updateEmail] = useState('')
   const [password, updatePassword] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   
   const handleOnClick = async (e) => {
     setLoading(true)
