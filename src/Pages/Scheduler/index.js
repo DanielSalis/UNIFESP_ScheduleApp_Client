@@ -78,9 +78,10 @@ const Scheduler = () => {
         </div>
         <div className={styles.schedulerContainer}>
           <div className={styles.headerSchedulerContainer}>
-            <h1>Jan 11 - Jan 17</h1>
+            <h1>Fevereiro</h1>
             <div className={styles.buttonsContainer}>
-              <div className={styles.changeMonth}></div>
+              <div className={styles.changeMonth}>
+              </div>
               <Button>Exportar</Button>
             </div>
           </div>
