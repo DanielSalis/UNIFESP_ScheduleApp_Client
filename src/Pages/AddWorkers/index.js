@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Header from "../../Components/Header";
 import Input from "../../Components/Input";
 import SwitchToggle from "../../Components/SwitchToggle";
@@ -16,6 +17,7 @@ let unitiesData = {};
 let departmentsData = null;
 
 const Workers = () => {
+  const history = useHistory();
   const [name, setName] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [email, setEmail] = useState(null);
@@ -81,32 +83,48 @@ const Workers = () => {
   const handleSubmit = async (e) => {
     debugger;
 
-    const departmentId = departmentsData.find(
-      (item) => item.name === department
-    );
-    const profileId = profilesData.find((item) => item.type === profile);
-
-    const form = {
-      name: name,
-      last_name: lastname,
-      email: email,
-      password: password,
-      department_id: departmentId.id,
-      profile_id: profileId.id,
-      schedule_type_id: 1,
-      vacation_type_id: 1
-    };
-
-    await api
-      .post(`${process.env.REACT_APP_API_URL}/api/user/create`, form)
-      .then(async (res) => {
-        alert(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if(departmentsData && profilesData){
+      const departmentId = departmentsData.find(
+        (item) => item.name === department
+      );
+      const profileId = profilesData.find((item) => item.type === profile);
+      const form = {
+        name: name,
+        last_name: lastname,
+        email: email,
+        password: password,
+        department_id: departmentId.id,
+        profile_id: profileId.id,
+        schedule_type_id: 1,
+        vacation_type_id: 1
+      };
+  
+      if(validateForm(form)){
+        await api
+        .post(`${process.env.REACT_APP_API_URL}/api/user/create`, form)
+        .then(async (res) => {
+          console.log(res)
+          await alert('Usuário cadastrado com sucesso!');
+          history.push("/workers");
+        })
+        .catch((err) => {
+            alert(err);
+        });
+      }else{
+        return
+      }
+      return
+    }
+    alert("Preencha o formulário corretamente")
   };
+
+  const validateForm = (form) => {
+    if(!form.name || !form.last_name || !form.email || !form.password || !form.department_id || !form.profile_id || !form.schedule_type_id || !form.vacation_type_id){
+      alert("Preencha o formulário corretamente")
+      return false
+    }
+    return true
+  }
 
   useEffect(() => {
     getProfiles();
