@@ -9,20 +9,15 @@ import SchedulerComponent from '../../Components/SchedulerComponent';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import api from "../../Components/Api";
 
+
 const Scheduler = () => {
   const [hideSidebar, setSidebar] = useState(false);
-  const handleClick = () => {
-    setSidebar(!hideSidebar);
-  };
-
-  const situationRadioButtonObject = {
-    working: 'Trabalhando',
-    onDuty: 'Plantão'
-  };
-
-const Scheduler = () => {
   const [calendarMonth, setCalendarMonth] = useState('')
   const [days, setDays] = useState([])
+  
+  const handleClick = () => {
+    setSidebar(!hideSidebar);
+  };  
   
   const getDaysByCalendarPeriod = async () =>{
     try{
