@@ -1,115 +1,170 @@
-import React, {useEffect, useState} from "react";
-import styles from "./_style.module.scss";
-import Header from "../../Components/Header";
-import RadioButton from "../../Components/RadioButton";
-import Select from "../../Components/Select";
-import Checkbox from "../../Components/Checkbox";
-import Button from "../../Components/Button";
-import SchedulerComponent from "../../Components/SchedulerComponent";
-import api from "../../Components/Api";
+import React, { useEffect, useState } from 'react';
+import styles from './_style.module.scss';
+import Header from '../../Components/Header';
+import RadioButton from '../../Components/RadioButton';
+import Select from '../../Components/Select';
+import Checkbox from '../../Components/Checkbox';
+import Button from '../../Components/Button';
+import SchedulerComponent from '../../Components/SchedulerComponent';
+import api from '../../Components/Api';
 
 const Scheduler = () => {
-  const [calendarMonth, setCalendarMonth] = useState('')
-  const [days, setDays] = useState([])
-  
-  const getDaysByCalendarPeriod = async () =>{
-    try{
-      let response = await api.get("/api/calendar/getAll", {
+  const [calendarMonth, setCalendarMonth] = useState('');
+  const [days, setDays] = useState([]);
+
+  const getDaysByCalendarPeriod = async () => {
+    try {
+      let response = await api.get('/api/calendar/getAll', {
         headers: {
-          "x-auth-token": localStorage.getItem("authToken")
+          'x-auth-token': localStorage.getItem('authToken')
         }
       });
-      debugger
-      const id = response.data[0].id
-      const month = response.data[0].name
-      setCalendarMonth(month)
+      // debugger;
+      const id = response.data[0].id;
+      const month = response.data[0].name;
+      setCalendarMonth(month);
 
-      const responseII = await api.get("/api/calendarDays/getByCalendarId/"+id, {
-        headers: {
-          "x-auth-token": localStorage.getItem("authToken")
+      const responseII = await api.get(
+        '/api/calendarDays/getByCalendarId/' + id,
+        {
+          headers: {
+            'x-auth-token': localStorage.getItem('authToken')
+          }
         }
-      });
-      setDays(responseII.data)
-
-    }catch(e){
-      setCalendarMonth('')
-      setDays(null)
-      return
+      );
+      setDays(responseII.data);
+    } catch (e) {
+      setCalendarMonth('');
+      setDays(null);
+      return;
     }
-  }
+  };
 
-  const getMesEmPortugues = function() {
-    const date = new Date()
-    let value;
-    if (date.getMonth() == 0){value = "Janeiro"};
-    if (date.getMonth() == 1){value = "Fevereiro"};
-    if (date.getMonth() == 2){value = "Março"};
-    if (date.getMonth() == 3){value = "Abril"};
-    if (date.getMonth() == 4){value = "Maio"};
-    if (date.getMonth() == 5){value = "Junho"};
-    if (date.getMonth() == 6){value = "Julho"};
-    if (date.getMonth() == 7){value = "Agosto"};
-    if (date.getMonth() == 8){value = "Setembro"};
-    if (date.getMonth() == 9){value = "Outubro"};
-    if (date.getMonth() == 10){value = "Novembro"};
-    if (date.getMonth() == 11){value = "Dezembro"};
-    return value;
-};
-
-  const createCalendar = async () =>{
-
-    var data = new Date();
-    const monthString = getMesEmPortugues();
-    const monthNumber = data.getMonth()+1
-    const year = data.getFullYear();
-
-    debugger;
-
-    const payload = {
-      "name":monthString,
-      "period": monthNumber > 9 ? `${monthNumber}-${year}`: `0${monthNumber}-${year}`
-    }
-
-    const config ={
-      headers:{
-        "x-auth-token": localStorage.getItem("authToken")
+  const actions = new Map([
+    {
+      0: (value) => {
+        value = 'Janeiro';
+      }
+    },
+    {
+      1: (value) => {
+        value = 'Fevereiro';
+      }
+    },
+    {
+      2: (value) => {
+        value = 'Março';
+      }
+    },
+    {
+      3: (value) => {
+        value = 'Abril';
+      }
+    },
+    {
+      4: (value) => {
+        value = 'Maio';
+      }
+    },
+    {
+      5: (value) => {
+        value = 'Junho';
+      }
+    },
+    {
+      6: (value) => {
+        value = 'Julho';
+      }
+    },
+    {
+      7: (value) => {
+        value = 'Agosto';
+      }
+    },
+    {
+      8: (value) => {
+        value = 'Setembro';
+      }
+    },
+    {
+      9: (value) => {
+        value = 'Outubro';
+      }
+    },
+    {
+      10: (value) => {
+        value = 'Novembro';
+      }
+    },
+    {
+      11: (value) => {
+        value = 'Dezembro';
       }
     }
+  ]);
+
+  const getMesEmPortugues = function () {
+    let value;
+    const date = new Date();
+    let action = actions[date.getMonth()];
+    action.call(this, value);
+    return value;
+  };
+
+  const createCalendar = async () => {
+    var data = new Date();
+    const monthString = getMesEmPortugues();
+    const monthNumber = data.getMonth() + 1;
+    const year = data.getFullYear();
+
+    // debugger;
+
+    const payload = {
+      name: monthString,
+      period:
+        monthNumber > 9 ? `${monthNumber}-${year}` : `0${monthNumber}-${year}`
+    };
+
+    const config = {
+      headers: {
+        'x-auth-token': localStorage.getItem('authToken')
+      }
+    };
     await api
       .post(`/api/calendar/create`, payload, config)
       .then(async (res) => {
-        console.log('criou calendario')
-        getDaysByCalendarPeriod()
+        console.log('criou calendario');
+        getDaysByCalendarPeriod();
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   useEffect(() => {
-    getDaysByCalendarPeriod()
+    getDaysByCalendarPeriod();
   }, []);
 
   const situationRadioButtonObject = {
-    working: "Trabalhando",
-    onDuty: "Plantão"
+    working: 'Trabalhando',
+    onDuty: 'Plantão'
   };
 
   const unitySelectObject = {
-    option1: "Unimed Centro",
-    option2: "Unimed Vale Sul"
+    option1: 'Unimed Centro',
+    option2: 'Unimed Vale Sul'
   };
 
   const departmentSelectObject = {
-    option1: "Pediatria",
-    option2: "Cardiologia"
+    option1: 'Pediatria',
+    option2: 'Cardiologia'
   };
 
   const onDutyTypeObject = {
-    option1: "4 horas",
-    option2: "6 horas",
-    option3: "8 horas",
-    option4: "12 horas"
+    option1: '4 horas',
+    option2: '6 horas',
+    option3: '8 horas',
+    option4: '12 horas'
   };
 
   return (
@@ -150,14 +205,21 @@ const Scheduler = () => {
         </div>
         <div className={styles.schedulerContainer}>
           <div className={styles.headerSchedulerContainer}>
-            {days?<h1>{calendarMonth}</h1>:<button onClick={()=>createCalendar()}>Gerar Calendário</button>}
+            {days ? (
+              <h1>{calendarMonth}</h1>
+            ) : (
+              <button onClick={() => createCalendar()}>Gerar Calendário</button>
+            )}
             <div className={styles.buttonsContainer}>
-              <div className={styles.changeMonth}>
-              </div>
+              <div className={styles.changeMonth}></div>
               <Button>Exportar</Button>
             </div>
           </div>
-          {days?<SchedulerComponent days={days}></SchedulerComponent>:<SchedulerComponent days={[]}></SchedulerComponent>}
+          {days ? (
+            <SchedulerComponent days={days}></SchedulerComponent>
+          ) : (
+            <SchedulerComponent days={[]}></SchedulerComponent>
+          )}
         </div>
       </div>
     </div>
