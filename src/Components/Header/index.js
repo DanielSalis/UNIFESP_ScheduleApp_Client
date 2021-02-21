@@ -1,9 +1,30 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory} from "react-router-dom";
 import styles from "./_style.module.scss";
 
 const Header = () => {
   const history = useHistory();
+  const [user, setUser] = useState(null)
+  const [profileName, setProfileName] = useState('')
+
+  const setUserInfo = ()=>{
+    const UserLogged =JSON.parse(localStorage.getItem('UserLogged'))
+    setUser(UserLogged)
+
+    if(UserLogged.profile_id == 1){
+      setProfileName('Administrador')
+    }
+    if(UserLogged.profile_id == 2){
+      setProfileName('Supervisor')
+    }
+    if(UserLogged.profile_id == 3){
+      setProfileName('Plantonista')
+    }
+  }
+
+  useEffect(()=>{
+    setUserInfo()
+  },[])
 
   const logout = () => {
     localStorage.clear();
@@ -32,8 +53,8 @@ const Header = () => {
       <div className={styles.space} />
       <div className={styles.profileContainer}>
         <div className={styles.profileInfo}>
-          <p>John Doe</p>
-          <p>Plantonista - Unimed Centro</p>
+          <p>{user ? `${user.name} ${user.last_name}` : null}</p>
+          <p>{profileName? profileName: 'Plantonista - Unimed Centro'}</p>
         </div>
         <div className={styles.dropdown}>
           <img
