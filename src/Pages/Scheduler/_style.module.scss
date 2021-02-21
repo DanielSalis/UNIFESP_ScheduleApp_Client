@@ -1,3 +1,5 @@
+@import "../../Layout/global.scss";
+
 .situationContainer {
   padding: 10px 0;
   border-bottom: 1px solid black;
@@ -30,10 +32,6 @@
   }
 }
 
-.leftContainer {
-  width: 200px;
-}
-
 .contentWrapper {
   display: flex;
   flex-direction: row;
@@ -51,4 +49,40 @@
 .schedulerContainer {
   width: 80%;
   padding: 10px 0 0 20px;
+}
+
+.accordionTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .accordionIcon {
+    cursor: pointer
+  }
+}
+
+.sidebarWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebarContainer {
+  width: 200px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  background-color: $light-blue;
+  border-radius: 5px;
+  height: 536px;
+  cursor: pointer;
+}
+/* jQ TOGGLE UTIL
+====================*/
+.hideSidebar {
+  display: none;
+}
+.push-body {
+  margin-left: 30rem;
 }
