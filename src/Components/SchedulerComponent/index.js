@@ -11,7 +11,7 @@ const SchedulerComponent = (props) => {
   const [presenceTypeObj, setPresenceTypeObj] = useState({
     option1: 'teste'
   });
-  const [showModalPopup, setShowModalPopup] = useState(true);
+  const [showModalPopup, setShowModalPopup] = useState(false);
 
   useEffect(async () => {
     getWorkersByProfileId();
@@ -86,7 +86,7 @@ const SchedulerComponent = (props) => {
 
   return (
     <div className={style.schedulerContainer}>
-      {props.days && (
+      {props.days.length > 0 && (
         <ReactbootStrap.Table>
           <thead>
             <tr>{days ? renderAllTableHeaders() : null}</tr>

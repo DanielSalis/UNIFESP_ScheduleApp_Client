@@ -19,18 +19,6 @@ const Scheduler = () => {
     setSidebar(!hideSidebar);
   };  
   
-  const getDaysByCalendarPeriod = async () =>{
-    try{
-      let response = await api.get("/api/calendar/getAll", {
-        headers: {
-          "x-auth-token": localStorage.getItem("authToken")
-        }
-      });
-      debugger
-      const id = response.data[0].id
-      const month = response.data[0].name
-      setCalendarMonth(month)
-
   const getDaysByCalendarPeriod = async () => {
     try {
       let response = await api.get('/api/calendar/getAll', {
@@ -59,74 +47,21 @@ const Scheduler = () => {
     }
   };
 
-  const actions = new Map([
-    {
-      0: (value) => {
-        value = 'Janeiro';
-      }
-    },
-    {
-      1: (value) => {
-        value = 'Fevereiro';
-      }
-    },
-    {
-      2: (value) => {
-        value = 'Março';
-      }
-    },
-    {
-      3: (value) => {
-        value = 'Abril';
-      }
-    },
-    {
-      4: (value) => {
-        value = 'Maio';
-      }
-    },
-    {
-      5: (value) => {
-        value = 'Junho';
-      }
-    },
-    {
-      6: (value) => {
-        value = 'Julho';
-      }
-    },
-    {
-      7: (value) => {
-        value = 'Agosto';
-      }
-    },
-    {
-      8: (value) => {
-        value = 'Setembro';
-      }
-    },
-    {
-      9: (value) => {
-        value = 'Outubro';
-      }
-    },
-    {
-      10: (value) => {
-        value = 'Novembro';
-      }
-    },
-    {
-      11: (value) => {
-        value = 'Dezembro';
-      }
-    }
-  ]);
-
   const getMesEmPortugues = function () {
+    const date = new Date()
     let value;
-    const date = new Date();
-    let action = actions[date.getMonth()];
-    action.call(this, value);
+    if (date.getMonth() == 0){value = "Janeiro"};
+    if (date.getMonth() == 1){value = "Fevereiro"};
+    if (date.getMonth() == 2){value = "Março"};
+    if (date.getMonth() == 3){value = "Abril"};
+    if (date.getMonth() == 4){value = "Maio"};
+    if (date.getMonth() == 5){value = "Junho"};
+    if (date.getMonth() == 6){value = "Julho"};
+    if (date.getMonth() == 7){value = "Agosto"};
+    if (date.getMonth() == 8){value = "Setembro"};
+    if (date.getMonth() == 9){value = "Outubro"};
+    if (date.getMonth() == 10){value = "Novembro"};
+    if (date.getMonth() == 11){value = "Dezembro"};
     return value;
   };
 
