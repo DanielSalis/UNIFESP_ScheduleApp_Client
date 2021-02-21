@@ -4,13 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import * as ReactbootStrap from 'react-bootstrap'
 import api from "../../Components/Api";
 
-const SchedulerComponent = () => {
+const SchedulerComponent = (props) => {
 
   const [funcionarios,setFuncionarios] = useState(null)
+  const [days, setDays] = useState([])
 
-  useEffect(() => {
+  useEffect(async () => {
     getWorkersByProfileId()
-  }, []);
+    setDays(props.days)
+    console.log('teste')
+  },[props]);
 
 
   const getWorkersByProfileId = async () => {
@@ -22,18 +25,6 @@ const SchedulerComponent = () => {
   const defautlHeaders = [
     {name: "Id"},
     {name: "Nome"}
-  ]
-
-  const days = [
-    {id:1, weekendDay: "Segunda", shortDate:'20/02'},
-    {id:2, weekendDay: "Terça", shortDate:'21/02'},
-    {id:3, weekendDay: "Quarta", shortDate:'22/02'},
-    {id:4, weekendDay: "Quinta", shortDate:'23/02'},
-    {id:5, weekendDay: "Sexta", shortDate:'24/02'},
-    {id:6, weekendDay: "Sábado", shortDate:'25/02'},
-    {id:7, weekendDay: "Domingo", shortDate:'26/02'},
-    {id:8, weekendDay: "Segunda", shortDate:'27/02'},
-    {id:9, weekendDay: "Terça", shortDate:'28/02'},
   ]
 
   const renderFuncionarios = (func, index) => {
@@ -56,7 +47,7 @@ const SchedulerComponent = () => {
     return data
   }
 
-  const renderAllTableHeaders = (func, index) => {
+  const renderAllTableHeaders = () => {
     const renderedDefaultHeaders = defautlHeaders.map(renderDefaultHeaders)
     const renderedDays = days.map(renderDays)
 
@@ -86,16 +77,16 @@ const SchedulerComponent = () => {
 
 
   return <div className={style.schedulerContainer}>
-    <ReactbootStrap.Table>
+    {props.days && <ReactbootStrap.Table>
       <thead>
         <tr>
-          {renderAllTableHeaders()}
+          {days ? renderAllTableHeaders(): null}
         </tr>
       </thead>
       <tbody>
         {funcionarios ? funcionarios.map(renderFuncionarios): null}
       </tbody>
-    </ReactbootStrap.Table>
+    </ReactbootStrap.Table>}
   </div>
 }
 
