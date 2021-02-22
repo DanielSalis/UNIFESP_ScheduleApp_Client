@@ -75,13 +75,11 @@ const Workers = () => {
   };
 
   const handleDepartmentChange = async (name) => {
-    debugger;
     const unity = unitiesData.find((item) => item.name === name);
     getDepartmentsByUnity(unity.id);
   };
 
   const handleSubmit = async (e) => {
-    debugger;
 
     if(departmentsData && profilesData){
       const departmentId = departmentsData.find(

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './_style.module.scss';
 import Header from '../../Components/Header';
-import RadioButton from '../../Components/RadioButton';
 import Select from '../../Components/Select';
 import Checkbox from '../../Components/Checkbox';
 import Button from '../../Components/Button';
@@ -26,7 +25,6 @@ const Scheduler = () => {
           'x-auth-token': localStorage.getItem('authToken')
         }
       });
-      // debugger;
       const id = response.data[0].id;
       const month = response.data[0].name;
       setCalendarMonth(month);
@@ -71,8 +69,6 @@ const Scheduler = () => {
     const monthNumber = data.getMonth() + 1;
     const year = data.getFullYear();
 
-    // debugger;
-
     const payload = {
       name: monthString,
       period:
@@ -98,11 +94,6 @@ const Scheduler = () => {
   useEffect(() => {
     getDaysByCalendarPeriod();
   }, []);
-
-  const situationRadioButtonObject = {
-    working: 'Trabalhando',
-    onDuty: 'Plantão'
-  };
   
   const unitySelectObject = {
     option1: 'Unimed Centro',
@@ -131,24 +122,6 @@ const Scheduler = () => {
               hideSidebar ? styles.hideSidebar : styles.sidebarContainer
             }`}
           >
-            <div className={styles.situationContainer}>
-              <h3>Situação</h3>
-              <RadioButton
-                // changed={radioChangeHandler}
-                id="1"
-                // isSelected={state.filterWorkerSituation === "Trabalhando"}
-                label="Trabalhando"
-                value="Trabalhando"
-              />
-
-              <RadioButton
-                // changed={radioChangeHandler}
-                id="2"
-                // isSelected={state.filterWorkerSituation === "Plantão"}
-                label="Plantão"
-                value="Plantão"
-              />
-            </div>
             <div className={styles.unitContainer}>
               <h3>Unidade</h3>
               <Select object={unitySelectObject}></Select>

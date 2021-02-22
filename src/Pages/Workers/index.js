@@ -18,7 +18,6 @@ const Workers = () => {
     const currentUser = JSON.parse(localStorage.getItem('UserLogged'))
 
     if(name){
-      debugger
       const usersData = response.data.filter(item => {
         return (item.id != currentUser.id) && (item.name.includes(name))
       });
@@ -79,7 +78,6 @@ const Workers = () => {
   };
 
   const handleDeleteUser = async (id) => {
-    debugger;
     console.log(id);
     const payload = {
       id: id

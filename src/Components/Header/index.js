@@ -38,12 +38,12 @@ const Header = () => {
       >
         Scheduler
       </div>
-      <div
+      {/* <div
         className={styles.dashboardOption}
         onClick={() => history.push("/dashboard")}
       >
         Dashboard
-      </div>
+      </div> */}
       <div
         className={styles.workerOption}
         onClick={() => history.push("/workers")}
